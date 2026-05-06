@@ -1,0 +1,958 @@
+/* --- CONFIGURAÇÕES GERAIS E ACESSIBILIDADE --- */
+html {
+    scroll-behavior: smooth;
+    font-size: 16px; /* Tamanho base para o controle de fonte via JS */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: #f4f7f4;
+    color: #333;
+    transition: background 0.3s, color 0.3s;
+    overflow-x: hidden; /* Evita barra de rolagem lateral indesejada */
+}
+
+/* --- BARRA DE ACESSIBILIDADE (FIXA NO TOPO) --- */
+.barra-acessibilidade {
+    background: #1b4332;
+    padding: 10px 5%;
+    display: flex;
+    justify-content: flex-end;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.controles button {
+    background: #fff;
+    border: none;
+    padding: 5px 12px;
+    margin-left: 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+    color: #1b4332;
+    transition: 0.2s;
+}
+
+.controles button:hover {
+    background: #d8f3dc;
+}
+
+/* --- HEADER E NAVEGAÇÃO --- */
+header {
+    background: linear-gradient(135deg, #1b4332 0%, #40916c 100%);
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+nav {
+    background: #2d6a4f;
+    padding: 15px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #d8f3dc;
+}
+
+/* --- CONTEÚDO PRINCIPAL CENTRALIZADO --- */
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+section {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+h2 {
+    color: #1b4332;
+    margin-bottom: 20px;
+}
+
+/* --- SISTEMA DE CARROSSEL ANIMADO --- */
+.carousel-container {
+    width: 100%;
+    overflow: hidden; /* Esconde os cards que saem da área visível */
+    padding: 20px 0;
+}
+
+.cards-track {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    animation: scroll-infinito 30s linear infinite; /* Movimento contínuo */
+}
+
+/* Pausa o movimento ao passar o mouse (Acessibilidade) */
+.cards-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scroll-infinito {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Move metade do trilho para criar o loop */
+}
+
+/* --- ESTILO DOS CARDS --- */
+.card {
+    min-width: 280px;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: left;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px); /* Efeito atrativo de flutuação */
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.card h3, .card p {
+    padding: 10px 15px;
+    margin: 0;
+}
+
+.card-footer {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tag {
+    background: #d8f3dc;
+    color: #1b4332;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+/* --- ESTILO PERSONALIZADO DO WHATSAPP --- */
+.btn-contato {
+    background: #2d6a4f;
+    color: white;
+    text-decoration: none;
+    padding: 6px 15px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.btn-contato:hover {
+    background-color: #128c7e; /* Um verde mais escuro ao passar o mouse */
+    transform: scale(1.05); /* Dá um leve zoom ao passar o mouse */
+}
+
+/* --- MODO ALTO CONTRASTE --- */
+body.dark-mode {
+    background: #000 !important;
+    color: #fff !important;
+}
+
+body.dark-mode .card, 
+body.dark-mode .barra-acessibilidade,
+body.dark-mode nav {
+    border: 1px solid #fff;
+    background: #000 !important;
+}
+
+body.dark-mode .tag {
+    background: #fff;
+    color: #000;
+}
+
+/* --- RODAPÉ --- */
+footer {
+    background: #2d3436;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+#sobre {
+    padding: 60px 20px;
+    background-color: #ffffff; /* Fundo branco para destacar do resto */
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    margin-top: 20px;
+}
+
+.sobre-conteudo {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.sobre-conteudo p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: #444;
+}
+
+/* Garante que o modo alto contraste também funcione aqui */
+body.dark-mode #sobre {
+    background-color: #000 !important;
+    border: 1px solid #fff;
+}
+
+/* Limpeza total e nova configuração do Mapa */
+.mapa-container {
+    width: 100% !important;
+    max-width: 700px !important; /* Tamanho ideal para um card centralizado */
+    margin: 20px auto !important;
+    border: 6px solid white !important;
+    border-radius: 15px !important;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15) !important;
+    overflow: hidden !important;
+}
+
+.img-mapa {
+    width: 100% !important;
+    height: auto !important; /* Isso impede que a imagem seja cortada ao meio */
+    display: block !important;
+}
+
+/* Centraliza a legenda abaixo do mapa */
+.legenda-mapa {
+    max-width: 450px !important;
+    margin: 10px auto !important; /* Centraliza o bloco da legenda */
+    padding: 10px !important;
+    text-align: left !important;
+}
+
+.legenda-mapa ul {
+    list-style: none !important;
+    padding: 0 !important;
+}
+
+.legenda-mapa li {
+    margin: 8px 0 !important;
+    font-size: 1rem !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* Define as cores das bolinhas na legenda */
+.ponto {
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 50% !important;
+    display: inline-block !important;
+    margin-right: 12px !important;
+}
+
+.cidade { background-color: #e74c3c !important; } /* Vermelho - Sede */
+.campo { background-color: #3498db !important; }  /* Azul - Pinhalzinho */
+.produtor { background-color: #2ecc71 !important; } /* Verde - Produtores */
+
+#curiosidades {
+    padding: 60px 20px;
+    background-color: #f4fbf7; /* Um verde bem clarinho para destacar */
+    text-align: center;
+}
+
+.curiosidades-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 30px auto 0;
+}
+
+.curiosidade-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    width: 280px;
+    transition: transform 0.3s;
+    border-bottom: 5px solid #2ecc71; /* Detalhe em verde */
+}
+
+.curiosidade-card:hover {
+    transform: translateY(-10px); /* Efeito de flutuar ao passar o mouse */
+}
+
+.curiosidade-card h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.curiosidade-card p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+}
+/* Configuração da animação (o movimento em si) */
+@keyframes flutuar {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); } /* Sobe 10px */
+    100% { transform: translateY(0); } /* Volta */
+}
+
+/* Aplica o visual e a animação nos cards */
+.curiosidade-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    width: 280px;
+    border-bottom: 5px solid #2ecc71; /* Detalhe em verde */
+    
+    /* Esta é a linha da animação que você fez */
+    animation: flutuar 5s ease-in-out infinite; 
+}
+/* Estilo do Botão */
+.btn-dark {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    z-index: 1000;
+    font-weight: bold;
+}
+
+/* Cores do Modo Escuro */
+body.dark-mode {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode section {
+    background-color: #2d2d2d !important;
+}
+
+body.dark-mode .curiosidade-card {
+    background-color: #333 !important;
+    color: white !important;
+}
+
+#faq {
+    padding: 60px 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.faq-item {
+    margin-bottom: 30px;
+    padding: 20px;
+    border-left: 4px solid #2ecc71; /* Verde característico do AgroConecta */
+    background-color: #f9f9f9;
+}
+
+.faq-item h3 {
+    color: #2c3e50;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+/* Ajuste para o Modo Escuro que você acabou de criar */
+body.dark-mode .faq-item {
+    background-color: #333 !important;
+    color: white !important;
+}
+
+body.dark-mode .faq-item h3 {
+    color: #2ecc71 !important;
+}
+
+footer {
+    background-color: #2c3e50; /* Tom escuro elegante */
+    color: white;
+    padding: 40px 20px;
+    font-family: sans-serif;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.footer-section {
+    margin: 20px;
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-section h4 {
+    color: #2ecc71; /* Verde do AgroConecta */
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section a {
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-section a:hover {
+    color: white;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #3e4f5f;
+    font-size: 0.9rem;
+    color: #bdc3c7;
+}
+
+
+/* Bloco único para o cabeçalho e logo do AgroConecta */
+header {
+    position: relative;
+    padding: 100px 20px 50px 20px; /* Aumentamos o espaço para o logo não sufocar o título */
+    text-align: center;
+}
+
+.logo-simbolo {
+    position: absolute;
+    top: 25px;
+    left: 40px;
+    width: 220px;      /* Tamanho ideal para ver os detalhes de inovação e campo */
+    height: auto;
+    background-color: white; /* Cobre totalmente o quadriculado "feio" do fundo */
+    border-radius: 15px;     /* Bordas arredondadas mais elegantes */
+    padding: 15px;           /* Mais respiro para a imagem parecer um selo oficial */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3); /* Sombra profissional com profundidade */
+    transition: transform 0.3s ease;
+}
+
+.logo-simbolo:hover {
+    transform: scale(1.05); /* Efeito interativo: o logo cresce levemente ao passar o mouse */
+}
+.banner-completo {
+    /* Substitua 'NOME_DA_SUA_IMAGEM.png' pelo nome real do arquivo */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/Gemini_Generated_Image_xm3ycvxm3ycvxm3y.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Efeito de profundidade ao rolar a página */
+    height: 450px; /* Altura do banner */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white; /* Texto branco para contrastar com o fundo */
+}
+
+.banner-overlay {
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(46, 204, 113, 0.2); /* Um leve brilho verde transparente */
+    backdrop-filter: blur(3px); /* Efeito de vidro fosco moderno */
+}
+
+.titulo-principal {
+    font-size: 3rem;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+    margin-bottom: 10px;
+}
+
+#typing-text {
+    font-size: 1.5rem;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+}
+.banner-completo {
+    /* Removemos o gradiente preto para mostrar as cores originais */
+    background-image: url('img/Gemini_Generated_Image_xm3ycvxm3ycvxm3y.png');
+    background-size: cover;
+    background-position: center;
+    height: 450px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.secao-missao {
+    padding: 80px 20px;
+    background-color: #ffffff;
+}
+
+.container-missao {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 50px; /* Espaço entre o texto e a imagem */
+}
+
+.texto-missao {
+    flex: 1; /* O texto ocupa metade do espaço */
+    text-align: left;
+}
+
+.texto-missao h2 {
+    color: #2e7d32;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.texto-missao p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 15px;
+}
+
+.imagem-missao {
+    flex: 1; /* A imagem ocupa a outra metade */
+}
+
+.imagem-missao img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Ajuste para celular: as colunas ficam uma em cima da outra */
+@media (max-width: 768px) {
+    .container-missao {
+        flex-direction: column;
+        text-align: center;
+    }
+    .texto-missao {
+        text-align: center;
+    }
+}
+.video-missao {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    object-fit: cover;
+}
+
+.secao-missao {
+    padding: 80px 20px;
+    background-color: #ffffff;
+}
+
+.container-missao {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 50px; /* Cria um espaço elegante entre o texto e o vídeo */
+}
+
+.texto-missao {
+    flex: 1; /* O texto ocupa 50% da largura */
+    text-align: left;
+}
+
+.texto-missao h2 {
+    color: #2e7d32;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.texto-missao p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 15px;
+}
+
+.imagem-missao {
+    flex: 1; /* O vídeo ocupa os outros 50% da largura */
+}
+
+.video-missao {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    object-fit: cover;
+}
+
+/* Ajuste importante para que no celular as colunas fiquem uma embaixo da outra */
+@media (max-width: 768px) {
+    .container-missao {
+        flex-direction: column;
+        text-align: center;
+    }
+    .texto-missao {
+        text-align: center;
+    }
+}
+html {
+    scroll-behavior: smooth;
+}
+.sobre-conteudo {
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo branco levemente transparente */
+    padding: 30px;
+    border-radius: 15px;
+    border-left: 6px solid #2e7d32; /* Uma barra verde bonita na lateral */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidade */
+    margin-right: 20px; /* Espaço para não grudar no vídeo */
+}
+
+.sobre-conteudo p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.quadro-missao {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    border-left: 8px solid #2e7d32; /* Aquela barra verde lateral que dá o destaque */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Sombra para o quadro flutuar */
+    text-align: left; /* Garante que o texto fique bem alinhado à esquerda */
+}
+
+.quadro-missao p {
+    margin-bottom: 15px;
+    line-height: 1.8;
+    color: #333;
+}
+
+/* Estilo Geral da Seção */
+.secao-jogo, .secao-sobre {
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Limita o tamanho do Jogo */
+.area-do-jogo {
+    display: grid;
+    grid-template-columns: repeat(4, 60px); /* 4 colunas fixas de 60px */
+    gap: 10px;
+    width: fit-content;
+    margin: 20px auto;
+}
+
+.arbusto {
+    width: 60px;
+    height: 60px;
+    background-color: #4caf50;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Limita o tamanho do Vídeo e Texto */
+.container-missao {
+    max-width: 900px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: center;
+}
+
+.texto-sobre { flex: 1; min-width: 300px; }
+.video-sobre { flex: 1; min-width: 300px; display: flex; justify-content: center; }
+
+.video-ajustado {
+    width: 100%;
+    max-width: 350px; /* Trava o vídeo em um tamanho elegante */
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.btn-jogo {
+    background-color: #2e7d32; /* Verde escuro do AgroConecta */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 15px;
+}
+
+.btn-jogo:hover {
+    background-color: #1b5e20; /* Fica um pouco mais escuro ao passar o mouse */
+}
+
+.secao-jogo, .secao-sobre {
+    margin-bottom: 60px; /* Dá um espaço maior entre o fim de uma e o começo da outra */
+}
+
+
+/* A "caixa pai" que segura os dois */
+.container-duplo {
+    display: flex;
+    flex-wrap: wrap; /* Se a tela for pequena (celular), um fica embaixo do outro */
+    justify-content: center;
+    gap: 40px; /* Espaço entre a curiosidade e o jogo */
+    padding: 40px 20px;
+    align-items: flex-start;
+}
+
+/* Estilo do bloco de curiosidades */
+.bloco-curiosidade {
+    flex: 1;
+    min-width: 300px;
+    max-width: 450px;
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+/* Estilo do bloco do jogo */
+.bloco-jogo {
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Ajuste das listas para ficarem bonitas */
+.lista-curiosidades {
+    text-align: left;
+    line-height: 1.8;
+    color: #444;
+}
+
+/* Ajuste para o Container não limitar o tamanho */
+.carrossel-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinha pelo topo */
+    min-height: 250px;       /* Altura mínima para não pular */
+    height: auto !important; /* Deixa o quadro crescer com o texto */
+    position: relative;
+    width: 100%;
+}
+
+/* Base de todos os cards (eles começam invisíveis e "na mesma vaga") */
+.carrossel-slides .curiosidade-card {
+    position: absolute; /* Todos ficam empilhados no mesmo lugar */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* Invisível */
+    transform: translateX(50px); /* Começa um pouco pro lado */
+    transition: opacity 0.8s ease, transform 0.8s ease; /* Animação suave */
+    
+    /* Reutilizando seu estilo de card */
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-bottom: 4px solid #4caf50; /* Abarinha verde */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* O card ativo agora dita o tamanho da caixa */
+.carrossel-slides .curiosidade-card.ativo {
+    opacity: 1;
+    transform: translateX(0);
+    position: relative; /* ISSO faz o texto aparecer completo e empurrar o fundo */
+    z-index: 2;
+}
+/* Garante que os outros cards fiquem "escondidos" atrás do ativo */
+.carrossel-slides .curiosidade-card:not(.ativo) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.container-duplo {
+    display: flex !important;
+    flex-direction: row !important; /* Força a ficar um ao lado do outro */
+    flex-wrap: wrap; /* No celular, ele joga o jogo para baixo automaticamente */
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 20px;
+}
+
+
+
+.carrossel-container {
+    height: 200px !important; /* Diminua esse valor se o texto for pequeno */
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+
+/* Esta é a "caixa" que segura os dois blocos */
+.container-duplo {
+    display: flex !important;
+    flex-direction: row !important; /* Força a ficar lado a lado */
+    flex-wrap: wrap; /* Se a tela for muito pequena, um desce para baixo do outro */
+    justify-content: center; /* Centraliza o par no meio da página */
+    align-items: flex-start; /* Alinha os dois pelo topo */
+    gap: 40px; /* Espaço de respiro entre o card e o jogo */
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Garante que o bloco de curiosidades não ocupe a largura toda */
+.bloco-curiosidade {
+    flex: 1; /* Deixa crescer proporcionalmente */
+    min-width: 300px; /* Não deixa ficar esmagado */
+    max-width: 450px; /* Não deixa ficar gigante */
+}
+
+/* Garante que o bloco do jogo não ocupe a largura toda */
+.bloco-jogo {
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+}
+
+/* FORÇAR ALINHAMENTO LADO A LADO */
+.container-duplo {
+    display: flex !important;
+    flex-direction: row !important; /* Força horizontal */
+    flex-wrap: nowrap !important;  /* Impede de quebrar para a linha de baixo no PC */
+    justify-content: center !important;
+    align-items: flex-start !important;
+    gap: 30px !important;
+    width: 100% !important;
+    max-width: 1100px !important;
+    margin: 0 auto !important;
+}
+
+/* AJUSTE DE LARGURA PARA NÃO CONFLITAR */
+.bloco-curiosidade {
+    width: 45% !important; /* Ocupa quase metade da linha */
+    min-width: 300px !important;
+}
+
+.bloco-jogo {
+    width: 45% !important; /* Ocupa a outra metade */
+    min-width: 300px !important;
+}
+
+/* GARANTIR QUE OS ARBUSTOS NÃO ESTIQUEM O JOGO */
+.area-do-jogo {
+    display: grid !important;
+    grid-template-columns: repeat(4, 60px) !important;
+    justify-content: center !important;
+}
+
+
+
+/* Estilo para a seção Sobre sem o vídeo */
+.secao-sobre-limpa {
+    padding: 60px 20px;
+    background-color: #f1f8e9; /* Um verde bem clarinho para dar destaque */
+    display: flex;
+    justify-content: center;
+}
+
+.container-texto-unico {
+    max-width: 800px; /* Limita a largura para a leitura ser confortável */
+    width: 100%;
+}
+
+.quadro-informativo {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    text-align: center; /* Centraliza o texto para um visual mais limpo */
+}
+
+.quadro-informativo h2 {
+    color: #2e7d32;
+    margin-bottom: 20px;
+}
+
+.quadro-informativo p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 15px;
+}
+
+.secao-sobre-final {
+    padding: 60px 20px;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+}
+
+.quadro-texto-unico {
+    max-width: 800px;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.carrossel-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinha o texto pelo topo */
+    width: 100%;
+    min-height: 300px;       /* Altura mínima para o card não sumir */
+    height: auto !important; /* PERMITE QUE O QUADRO CRESÇA COM O TEXTO */
+    position: relative;
+    overflow: visible;       /* Não esconde o que vazar */
+}
